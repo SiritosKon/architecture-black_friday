@@ -31,6 +31,12 @@
 
 ---
 
+> ⚠️ **Важно:** стенды заданий 2–4 используют одни и те же порты (8080, 27017–27024)
+> и имена контейнеров. Перед запуском следующего стенда остановите предыдущий
+> из его директории командой `docker compose down -v`. Флаг `-v` обязателен:
+> старые тома хранят метаданные кластера, и без их удаления узлы следующего
+> запуска не поднимутся.
+
 ## Задание 2. Шардирование — [`mongo-sharding/`](mongo-sharding/)
 
 Кластер из двух шардов: `config_srv`, `shard_1`, `shard_2`, `mongos_router` и приложение.
@@ -41,7 +47,7 @@ docker compose up -d
 ./scripts/mongo-init.sh
 ```
 
-Открыть <http://localhost:8080/>.
+Открыть <http://localhost:8080/>. Завершив проверку: `docker compose down -v`.
 
 ---
 
@@ -55,7 +61,7 @@ docker compose up -d
 ./scripts/mongo-init.sh
 ```
 
-Открыть <http://localhost:8080/>.
+Открыть <http://localhost:8080/>. Завершив проверку: `docker compose down -v`.
 
 ---
 
@@ -75,6 +81,8 @@ docker compose up -d
 time curl -s http://localhost:8080/helloDoc/users -o /dev/null   # 1-й запрос ~1 c
 time curl -s http://localhost:8080/helloDoc/users -o /dev/null   # повторный <100 мс
 ```
+
+Завершив проверку: `docker compose down -v`.
 
 ---
 
